@@ -136,16 +136,11 @@ say "Packaging"
 # ---------------------------------------------------------------------------
 say "Building DMG"
 DMG="$DIST/SamsungSpliXInstaller-$VERSION.dmg"
-BG="$DIST/dmg-bg.png"
 STAGE="$DIST/dmg-stage"
-
-swiftc -O -o "$DIST/draw-bg" "$APP_DIR/icon/draw-dmg-bg.swift" -framework AppKit
-"$DIST/draw-bg" "$BG"
-rm -f "$DIST/draw-bg"
+VOLICON="$APP/Contents/Resources/AppIcon.icns"
 
 rm -rf "$STAGE"; mkdir -p "$STAGE"
 cp -R "$APP" "$STAGE/"
-rm -f "$DMG"
 
 make_plain_dmg() {
   ln -sf /Applications "$STAGE/Applications"
@@ -153,24 +148,16 @@ make_plain_dmg() {
   hdiutil create -volname "$APP_NAME" -srcfolder "$STAGE" -ov -format UDZO "$DMG" >/dev/null
 }
 
+# dmgbuild writes the .DS_Store (icon size/positions, window size, volume icon)
+# directly - no Finder / Apple Events permission required.  macOS 26 no longer
+# supports setting a DMG background picture programmatically, so we don't.
 if /usr/bin/python3 -c "import dmgbuild" >/dev/null 2>&1; then
-  # dmgbuild writes the .DS_Store itself -> no Finder/Automation permission needed
   rm -f "$DMG"
   /usr/bin/python3 -m dmgbuild -s "$APP_DIR/icon/dmg-settings.py" \
-      -D app="$APP" -D background="$BG" "$APP_NAME" "$DMG" >/dev/null
-elif command -v create-dmg >/dev/null 2>&1; then
-  create-dmg \
-    --volname "$APP_NAME" \
-    --background "$BG" \
-    --window-size 540 380 \
-    --icon-size 128 \
-    --icon "$APP_NAME.app" 140 190 \
-    --app-drop-link 400 190 \
-    "$DMG" "$STAGE" || make_plain_dmg
-else
-  make_plain_dmg
+      -D app="$APP" -D volicon="$VOLICON" "$APP_NAME" "$DMG" >/dev/null 2>&1 || true
 fi
-rm -rf "$STAGE" "$BG"
+[ -f "$DMG" ] || { say "  (plain DMG fallback)"; make_plain_dmg; }
+rm -rf "$STAGE"
 rm -f "$DIST"/rw.*.dmg
 
 say "Done: $APP"

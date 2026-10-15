@@ -56,6 +56,10 @@ invalidate the device handle the backend already holds.
 The app detects the printer, installs the right PPD, and creates the print
 queue for you.
 
+<p align="center">
+<img src="docs/screenshots/05-dmg-window.png" width="560" alt="Samsung SpliX Installer DMG: drag the app to Applications">
+</p>
+
 > Tested on macOS 26 “Tahoe” (Apple Silicon) with a Samsung ML-1510.
 
 ## What it installs

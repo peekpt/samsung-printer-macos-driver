@@ -38,31 +38,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         buildMenu()
         buildWindow()
         refresh()
-        maybeScreenshot()
-    }
-
-    /// Hidden helper: `--screenshot <file>` renders the window to a PNG and
-    /// quits.  Used to generate the documentation screenshots without needing
-    /// Screen Recording permission.
-    func maybeScreenshot() {
-        let args = CommandLine.arguments
-        guard let i = args.firstIndex(of: "--screenshot"), i + 1 < args.count else { return }
-        let path = args[i + 1]
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-            self.captureWindow(to: path)
-            NSApp.terminate(nil)
-        }
-    }
-
-    func captureWindow(to path: String) {
-        guard let window = self.window, let content = window.contentView else { return }
-        let view = content.superview ?? content
-        let bounds = view.bounds
-        guard let rep = view.bitmapImageRepForCachingDisplay(in: bounds) else { return }
-        view.cacheDisplay(in: bounds, to: rep)
-        if let data = rep.representation(using: .png, properties: [:]) {
-            try? data.write(to: URL(fileURLWithPath: path))
-        }
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {

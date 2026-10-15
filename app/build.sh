@@ -153,7 +153,12 @@ make_plain_dmg() {
   hdiutil create -volname "$APP_NAME" -srcfolder "$STAGE" -ov -format UDZO "$DMG" >/dev/null
 }
 
-if command -v create-dmg >/dev/null 2>&1; then
+if /usr/bin/python3 -c "import dmgbuild" >/dev/null 2>&1; then
+  # dmgbuild writes the .DS_Store itself -> no Finder/Automation permission needed
+  rm -f "$DMG"
+  /usr/bin/python3 -m dmgbuild -s "$APP_DIR/icon/dmg-settings.py" \
+      -D app="$APP" -D background="$BG" "$APP_NAME" "$DMG" >/dev/null
+elif command -v create-dmg >/dev/null 2>&1; then
   create-dmg \
     --volname "$APP_NAME" \
     --background "$BG" \
@@ -166,6 +171,7 @@ else
   make_plain_dmg
 fi
 rm -rf "$STAGE" "$BG"
+rm -f "$DIST"/rw.*.dmg
 
 say "Done: $APP"
 ls -la "$DIST"/*.dmg "$DIST"/*.zip 2>/dev/null

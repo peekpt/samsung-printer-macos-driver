@@ -56,10 +56,6 @@ invalidate the device handle the backend already holds.
 The app detects the printer, installs the right PPD, and creates the print
 queue for you.
 
-<p align="center">
-<img src="docs/screenshots/05-dmg-window.png" width="560" alt="Samsung SpliX Installer DMG: drag the app to Applications">
-</p>
-
 > Tested on macOS 26 “Tahoe” (Apple Silicon) with a Samsung ML-1510.
 
 ## What it installs
@@ -75,15 +71,6 @@ queue for you.
 
 Nothing is patched in place; **Uninstall** removes everything and the print
 queues it created.
-
-## Screenshots
-
-| Detected printer (EN) | Installed (EN) | Before install (PT) |
-|---|---|---|
-| ![detected](docs/screenshots/01-main-en.png) | ![installed](docs/screenshots/02-main-pt.png) | ![not installed](docs/screenshots/03-notinstalled-pt.png) |
-
-The app is localised: **English by default**, Portuguese automatically when the
-system language is Portuguese.
 
 ## Troubleshooting
 
@@ -127,7 +114,7 @@ app/src/main.swift          Swift/AppKit UI
 app/Resources/scripts/      install.sh / uninstall.sh (run as root)
 app/Resources/backend/      splixusb CUPS backend
 app/Resources/{bin,ppd}     compiled payload
-app/icon/                   icon + DMG background drawn in code
+app/icon/                   app icon (drawn in code) + DMG layout settings
 src/splixreset.c            USB re-enumeration helper
 vendor/splix/               SpliX source (GPL-2.0)
 legacy/                     first prototype (filter-based) — obsolete
@@ -145,33 +132,10 @@ legacy/                     first prototype (filter-based) — obsolete
 
 ---
 
-## Português
-
-Uma app macOS que instala o driver para impressoras Samsung antigas (família
-SpliX / QPDL: ML-1510, ML-2010, ML-2510, SCX-4200, …) em macOS moderno,
-incluindo Apple Silicon, e resolve o problema de ter de **desligar e voltar a
-ligar o cabo USB** antes de imprimir outra vez.
-
-1. Descarrega o `.dmg` mais recente em [**Releases**](../../releases).
-2. Abre o DMG e arrasta a app para **Aplicações**.
-3. Como a app não está notarizada, à primeira vez faz **clique direito → Abrir
-   → Abrir**.
-4. Liga a impressora por USB, abre a app e clica **Instalar driver**.
-5. Imprime uma página e depois outra **sem mexer no cabo**.
-
-A interface está em inglês por defeito e muda para português automaticamente
-se o idioma do sistema for português. O código é o mesmo; os binários do SpliX
-são compilados nativamente para arm64 + x86_64 (sem Rosetta).
-
-Licença: novo código em **MIT**; filtros/PPDs do **SpliX** em **GPL-2.0** (o
-código-fonte correspondente vai dentro da app).
-
----
-
 <!-- Everything below is for search engines: the full list of compatible printers. -->
 <sub>
 
-**Compatible printers / Impressoras compatíveis:** Dell 1100, Dell 1110, Lexmark X215 MFP, Samsung CLP-200, Samsung CLP-300, Samsung CLP-310, Samsung CLP-310N, Samsung CLP-315, Samsung CLP-500, Samsung CLP-510, Samsung CLP-550, Samsung CLP-600, Samsung CLX-216X, Samsung CLX-2170, Samsung CLX-3160, Samsung ML-1510, Samsung ML-1520, Samsung ML-1610, Samsung ML-1630, Samsung ML-1640, Samsung ML-1660, Samsung ML-1710, Samsung ML-1740, Samsung ML-1750, Samsung ML-1910, Samsung ML-1915, Samsung ML-2010, Samsung ML-2015, Samsung ML-2150, Samsung ML-2240, Samsung ML-2250, Samsung ML-2251, Samsung ML-2510, Samsung ML-2525, Samsung ML-2525W, Samsung ML-2550, Samsung ML-2571, Samsung ML-2580, Samsung ML-2580N, Samsung ML-3050, Samsung ML-3051, Samsung ML-3051ND, Samsung ML-3471ND, Samsung ML-3560, Samsung SCX-3200, Samsung SCX-4100, Samsung SCX-4200, Samsung SCX-4216F, Samsung SCX-4300, Samsung SCX-4500, Samsung SCX-4521F, Samsung SCX-4600, Samsung SCX-4623f, Samsung SCX-4623fw, Samsung SCX-5330N, Samsung SCX-5530FN, Samsung SF-565P, Toshiba eSTUDIO180S, Xerox Phaser 3115, Xerox Phaser 3116, Xerox Phaser 3117, Xerox Phaser 3120, Xerox Phaser 3121, Xerox Phaser 3122, Xerox Phaser 3124, Xerox Phaser 3130, Xerox Phaser 3140, Xerox Phaser 3150, Xerox Phaser 3155, Xerox Phaser 3160, Xerox Phaser 3420, Xerox Phaser 3425, Xerox Phaser 5500, Xerox Phaser 6100, Xerox Phaser 6110, Xerox WorkCentre 3119, Xerox WorkCentre PE114e, Xerox WorkCentre PE16.
+**Compatible printers:** Dell 1100, Dell 1110, Lexmark X215 MFP, Samsung CLP-200, Samsung CLP-300, Samsung CLP-310, Samsung CLP-310N, Samsung CLP-315, Samsung CLP-500, Samsung CLP-510, Samsung CLP-550, Samsung CLP-600, Samsung CLX-216X, Samsung CLX-2170, Samsung CLX-3160, Samsung ML-1510, Samsung ML-1520, Samsung ML-1610, Samsung ML-1630, Samsung ML-1640, Samsung ML-1660, Samsung ML-1710, Samsung ML-1740, Samsung ML-1750, Samsung ML-1910, Samsung ML-1915, Samsung ML-2010, Samsung ML-2015, Samsung ML-2150, Samsung ML-2240, Samsung ML-2250, Samsung ML-2251, Samsung ML-2510, Samsung ML-2525, Samsung ML-2525W, Samsung ML-2550, Samsung ML-2571, Samsung ML-2580, Samsung ML-2580N, Samsung ML-3050, Samsung ML-3051, Samsung ML-3051ND, Samsung ML-3471ND, Samsung ML-3560, Samsung SCX-3200, Samsung SCX-4100, Samsung SCX-4200, Samsung SCX-4216F, Samsung SCX-4300, Samsung SCX-4500, Samsung SCX-4521F, Samsung SCX-4600, Samsung SCX-4623f, Samsung SCX-4623fw, Samsung SCX-5330N, Samsung SCX-5530FN, Samsung SF-565P, Toshiba eSTUDIO180S, Xerox Phaser 3115, Xerox Phaser 3116, Xerox Phaser 3117, Xerox Phaser 3120, Xerox Phaser 3121, Xerox Phaser 3122, Xerox Phaser 3124, Xerox Phaser 3130, Xerox Phaser 3140, Xerox Phaser 3150, Xerox Phaser 3155, Xerox Phaser 3160, Xerox Phaser 3420, Xerox Phaser 3425, Xerox Phaser 5500, Xerox Phaser 6100, Xerox Phaser 6110, Xerox WorkCentre 3119, Xerox WorkCentre PE114e, Xerox WorkCentre PE16.
 
 Samsung ML-1510 driver macOS, ML-1510 Apple Silicon, ML-2010 macOS driver,
 ML-2510 driver mac, SCX-4200 driver macOS, Samsung printer replug USB bug,

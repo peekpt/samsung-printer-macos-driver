@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# splixusb - CUPS backend for Samsung (SpliX/QPDL) USB printers.
+#
+# It re-enumerates the printer's USB device (the software equivalent of
+# unplugging and replugging the cable) *before* opening it, then hands over to
+# the stock USB backend.  This cures the "must unplug/replug to print again"
+# bug without the race that a filter-based reset would have (CUPS starts the
+# filters and the backend concurrently, so a reset in a filter can invalidate
+# the device handle the backend already opened).
+#
+# Installed by the Samsung SpliX Installer.  Do not edit by hand.
+
+DEST="/Library/Printers/Splix"
+
+URI="${DEVICE_URI:-$0}"
+case "$URI" in
+  splixusb://*) USBURI="usb://${URI#splixusb://}" ;;
+  *)            USBURI="$URI" ;;
+esac
+
+if [ -x "$DEST/splixreset" ]; then
+  "$DEST/splixreset" -u "$USBURI" -w 10 -d 2 -v 1>&2 || true
+fi
+
+export DEVICE_URI="$USBURI"
+# NOTE: do not add arguments here.  The real backend takes the device URI from
+# DEVICE_URI and, when argc == 7, treats argv[6] as the print file; an extra
+# argument would shift everything and make it try to open the options string.
+exec /usr/libexec/cups/backend/usb "$@"

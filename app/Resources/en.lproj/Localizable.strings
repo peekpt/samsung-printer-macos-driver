@@ -1,0 +1,31 @@
+/* Samsung SpliX Installer - English (default) */
+
+"ui.headline"           = "Samsung printer installer (SpliX / QPDL family)";
+"ui.subtitle"           = "Installs the filters, the PPDs and the “unplug/replug the USB cable” fix, and adds the Samsung printers connected over USB. No Samsung driver and no SpliX install needed.";
+
+"ui.install"            = "Install driver";
+"ui.uninstall"          = "Uninstall";
+"ui.check"              = "Check";
+
+"ui.state.installed"    = "Status: driver installed";
+"ui.state.notinstalled" = "Status: driver not installed";
+
+"ui.none"               = "No Samsung printer connected over USB.";
+"ui.found"              = "Supported printers detected:";
+"ui.unsupported"        = "Printers detected without a matching PPD:";
+"ui.found.line"         = "   • %@ %@  →  queue “%@”  (PPD: %@)";
+"ui.unsupported.line"   = "   • %@ %@ — no matching PPD";
+
+"log.check"             = "=== Check (%@) ===";
+"log.install"           = "=== Installation ===";
+"log.uninstall"         = "=== Uninstallation ===";
+"log.busy.install"      = "Installing… (authenticate in the dialog)";
+"log.busy.uninstall"    = "Uninstalling… (authenticate in the dialog)";
+"log.install.ok"        = "✓ Installation complete.";
+"log.install.fail"      = "✗ Installation failed or was cancelled.";
+"log.uninstall.ok"      = "✓ Uninstallation complete.";
+"log.uninstall.fail"    = "✗ Uninstallation failed or was cancelled.";
+"log.nolog"             = "(no log)";
+
+"menu.about"            = "About %@";
+"menu.quit"             = "Quit";

@@ -1,0 +1,19 @@
+# Build artifacts
+dist/
+build/
+app/tools/bin/
+app/Resources/bin/
+app/Resources/ppd/
+app/Resources/licenses/
+
+# SpliX build output
+vendor/build/
+vendor/splix/.build/
+vendor/splix/.deps/
+vendor/splix/optimized/
+
+# macOS
+.DS_Store
+
+# stale binary from the legacy prototype
+legacy/ml1510reset

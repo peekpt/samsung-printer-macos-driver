@@ -1,0 +1,14 @@
+#!/bin/sh
+# Minimal pkg-config shim used to build SpliX against the SYSTEM CUPS
+# (linked via -lcups / -lcupsimage from the dyld shared cache) while using
+# headers from Homebrew's keg-only cups formula for compilation only.
+#
+# This keeps the produced filters free of any /opt/homebrew runtime dependency.
+
+case "$*" in
+  "--cflags cups"*)                       echo "-I/opt/homebrew/opt/cups/include" ;;
+  "--libs cups"*)                         echo "-lcups -lcupsimage" ;;
+  "--variable=cups_serverbin cups"*)      echo "/usr/libexec/cups" ;;
+  "--variable=cups_datadir cups"*)        echo "/usr/share/cups" ;;
+  *)                                      exit 1 ;;
+esac

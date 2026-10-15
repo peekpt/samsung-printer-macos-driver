@@ -1,0 +1,31 @@
+/* Samsung SpliX Installer - Português */
+
+"ui.headline"           = "Instalador de impressoras Samsung (família SpliX / QPDL)";
+"ui.subtitle"           = "Instala os filtros, os PPDs e a correção do “desligar/ligar o USB”, e adiciona as impressoras Samsung ligadas por USB. Não é preciso o driver da Samsung nem instalar o SpliX.";
+
+"ui.install"            = "Instalar driver";
+"ui.uninstall"          = "Desinstalar";
+"ui.check"              = "Verificar";
+
+"ui.state.installed"    = "Estado: driver instalado";
+"ui.state.notinstalled" = "Estado: driver não instalado";
+
+"ui.none"               = "Nenhuma impressora Samsung ligada por USB.";
+"ui.found"              = "Impressoras suportadas detetadas:";
+"ui.unsupported"        = "Impressoras detetadas sem PPD compatível:";
+"ui.found.line"         = "   • %@ %@  →  fila “%@”  (PPD: %@)";
+"ui.unsupported.line"   = "   • %@ %@ — sem PPD compatível";
+
+"log.check"             = "=== Verificação (%@) ===";
+"log.install"           = "=== Instalação ===";
+"log.uninstall"         = "=== Desinstalação ===";
+"log.busy.install"      = "A instalar… (autentica no diálogo)";
+"log.busy.uninstall"    = "A desinstalar… (autentica no diálogo)";
+"log.install.ok"        = "✓ Instalação concluída.";
+"log.install.fail"      = "✗ A instalação falhou ou foi cancelada.";
+"log.uninstall.ok"      = "✓ Desinstalação concluída.";
+"log.uninstall.fail"    = "✗ A desinstalação falhou ou foi cancelada.";
+"log.nolog"             = "(sem registo)";
+
+"menu.about"            = "Acerca do %@";
+"menu.quit"             = "Sair";

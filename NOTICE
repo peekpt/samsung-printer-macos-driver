@@ -1,0 +1,20 @@
+Samsung SpliX Installer
+Copyright (c) 2026 Paulo (peekpt) — MIT (see LICENSE).
+
+This product bundles the following third-party components:
+
+────────────────────────────────────────────────────────────────────────────
+SpliX 2.0.0  —  CUPS drivers for SPL/QPDL (Samsung Printer Language)
+  Copyright (C) 2006-2008 Aurélien Croc (AP²C) and contributors
+  Licence: GNU General Public License, version 2
+  Files: vendor/splix/ (source), LICENSE.splix
+  Redistributed as compiled universal binaries (rastertoqpdl, pstoqpdl) and
+  PPD files inside the application bundle.  The complete corresponding source
+  is included in this repository (vendor/splix/) and shipped inside the app as
+  Resources/licenses/splix-source.tar.gz.  SpliX is distributed in the hope
+  that it will be useful, but WITHOUT ANY WARRANTY.
+────────────────────────────────────────────────────────────────────────────
+
+The Apple CUPS headers used at build time come from the cups formula and are
+only needed to compile; the produced binaries link against the system CUPS
+libraries (/usr/lib/libcups*, Apple/OpenPrinting, Apache-2.0).
